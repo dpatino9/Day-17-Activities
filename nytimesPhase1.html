@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>NYTimes app</title>
+	<!-- Link to jQuery -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	
+	<script type="text/javascript">
+		var searchterm = "Trump"
+		var beginDate = "20150101";
+		var endDate = "20160101";
+		var url = "https://crossorigin.me/https://api.nytimes.com/svc/search/v2/articlesearch.json";
+		url += '?' + $.param({
+  			'api-key': "d6c8cdc35f93488dbaa04dd9173ea9fb",
+  			// searches article body, headline, and byline
+  			'q': searchterm,
+  			// YYYYMMDD
+  			'begin_date': beginDate,
+  			'end_date': endDate,
+  			// options - newest oldest
+  			'sort': "newest"
+		});
+		$.ajax({
+  			url: url,
+  			method: 'GET',
+		}).done(function(result) {
+			console.log(result);
+		}).fail(function(err) {
+			throw err;
+		});
+	</script>
+</body>
+</html>
